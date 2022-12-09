@@ -1,0 +1,26 @@
+#include <EducationShield.h>
+
+
+PiezoKnockSensor sensor=PiezoKnockSensor(A0);
+
+
+Servo lidOpener;
+
+void setup(){
+
+  sensor.config(100,80);
+
+  lidOpener.attach(9);
+  lidOpener.write(180);
+}
+void loop(){
+
+  if(sensor.knocked(20)){
+    lidOpener.write(100);
+    delay(3000); 
+    lidOpener.write(180);
+    delay(200);
+  }
+
+}
+
