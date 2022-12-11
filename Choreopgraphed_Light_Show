@@ -1,0 +1,121 @@
+//Song: Eye of the Tiger
+//Timeframe:0-17 seconds
+
+
+int redLeds[] = {6,5,3};
+int otherLeds[] = {8,9,10,11,2};
+int speed1 = 40;
+void setup() {
+  // put your setup code here, to run once:
+  for(int i = 2; i<12; i++){
+    pinMode(i, OUTPUT);
+  }
+}
+void loop() {
+  for(int a = 0; a<6; a++){
+    analogWrite(otherLeds[a], 255);
+    delay(speed1);
+  }
+  for(int a = 5; a>-1; a--){
+    analogWrite(redLeds[a], 255);
+    delay(speed1);
+  }
+  for(int a = 0; a<6; a++){
+    analogWrite(otherLeds[a], 0);
+    delay(speed1);
+  }
+  for(int a = 5; a>-1; a--){
+    analogWrite(redLeds[a], 0);
+    delay(speed1);
+  }
+  for(int a = 0; a<23; a++){
+    analogWrite(otherLeds[1], 255);
+    analogWrite(otherLeds[3], 255);
+    analogWrite(otherLeds[0], 0);
+    analogWrite(otherLeds[2], 0);
+    analogWrite(otherLeds[4], 0);
+    delay(125);
+    analogWrite(otherLeds[1], 0);
+    analogWrite(otherLeds[3], 0);
+    analogWrite(otherLeds[0], 255);
+    analogWrite(otherLeds[2], 255);
+    analogWrite(otherLeds[4], 255);
+    delay(125);
+    if(a%3 == 0){
+      allReds(a*9);
+    }
+  }
+  alloff();
+  delay(1300);
+  allReds(255);
+  allOthers(255);
+  delay(300);
+  allReds(0);
+  allOthers(0);
+  delay(800);
+  analogWrite(redLeds[0], 255);
+  analogWrite(otherLeds[0], 255);
+  analogWrite(otherLeds[4], 255);
+  delay(500);
+  analogWrite(redLeds[2], 255);
+  analogWrite(otherLeds[1], 255);
+  analogWrite(otherLeds[3], 255);
+  delay(500);
+  analogWrite(redLeds[1], 255);
+  analogWrite(otherLeds[2], 255);
+  delay(1200);
+  analogWrite(redLeds[1], 0);
+  analogWrite(otherLeds[2], 0);
+  delay(500);
+  analogWrite(redLeds[2], 0);
+  analogWrite(otherLeds[1], 0);
+  analogWrite(otherLeds[3], 0);
+  delay(500);
+  analogWrite(redLeds[0], 0);
+  analogWrite(otherLeds[0], 0);
+  analogWrite(otherLeds[4], 0);
+  delay(1200);
+  allReds(255);
+  allOthers(255);
+  delay(250);
+  allReds(0);
+  allOthers(0);
+  delay(250);
+  allReds(255);
+  allOthers(255);
+  delay(250);
+  allReds(0);
+  allOthers(0);
+  delay(250);
+  allReds(255);
+  allOthers(255);
+  delay(250);
+  for(int a = 0; a<10; a++){
+    allOthers(255);
+    delay(150);
+    allOthers(255);
+    analogWrite(otherLeds[1], 0);
+    analogWrite(otherLeds[3], 0);
+    delay(150);
+  }
+  while(1==1){
+    delay(100);
+    alloff();
+  }
+
+}
+void alloff(){
+  for(int a = 0; a<5; a++){
+    analogWrite(otherLeds[a], 0);
+  }
+  for(int a = 2; a>-1; a--){
+    analogWrite(redLeds[a], 0);
+  }
+}
+void allReds(int brightness){
+  analogWrite(redLeds[0], brightness);
+  analogWrite(redLeds[1], brightness);
+  analogWrite(redLeds[2], brightness);
+}
+void allOthers(int brightness){
+  analogWrite(otherLeds[0], brightness);
